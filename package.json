@@ -1,0 +1,55 @@
+{
+  "name": "@easylogic/csspa",
+  "version": "0.0.1",
+  "description": "simple function parser like css string value",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./dist/csspa.es.js",
+  "directories": {
+    ".": "./src"
+  },
+  "files": [
+    "samples",
+    "src",
+    "dist"
+  ],
+  "exports": {
+    ".": {
+      "import": "./src/index.js",
+      "require": "./dist/csspa.umd.js"
+    }
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build --config vite.dist.config.js",
+    "preview": "vite preview",
+    "test": "vitest",
+    "release": "release-it"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/easylogic/csspa.git"
+  },
+  "keywords": [
+    "css",
+    "function",
+    "parser"
+  ],
+  "author": "easylogic",
+  "license": "MIT",
+  "contributors": [
+    {
+      "name": "easylogic",
+      "email": "cyberuls@gmail.com"
+    }
+  ],
+  "bugs": {
+    "url": "https://github.com/easylogic/csspa/issues"
+  },
+  "homepage": "https://github.com/easylogic/csspa#readme",
+  "devDependencies": {
+    "release-it": "^14.11.8",
+    "vite": "^2.7.10",
+    "vitest": "0.0.134"
+  }
+}
