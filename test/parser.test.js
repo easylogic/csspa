@@ -1,6 +1,7 @@
 
 import { expect, test } from 'vitest';
-import { parseOneValue, parseValue } from '../src';
+import { parseOneValue } from '../src/parser/one-parser';
+import { parseValue } from '../src/parser/value-parser';
 
 test("create css linear-gradient timing test - ease", () => {
     const result = parseOneValue("linear-gradient(-0.7791965086794089% 40.30037452797422% 80.05772932007076% 40.021450975161% pad, #45abd6 0% ,rgb(14,71,119) 48.98766411675347% steps(3, start),rgb(137,111,133) 72.67366131157286% steps(10, start),#f69292 99.06577580909027% ease 15)");
@@ -150,6 +151,7 @@ test("create css linear-gradient timing test - ease", () => {
                 "parsed": {
                     "funcType": "timing",
                     "name": "steps",
+                    "matchedString": "steps(3, start)",
                     "count": 3,
                     "direction": "start"
                 },
@@ -204,6 +206,7 @@ test("create css linear-gradient timing test - ease", () => {
                 "parsed": {
                     "funcType": "timing",
                     "name": "steps",
+                    "matchedString": "steps(10, start)",
                     "count": 10,
                     "direction": "start"
                 },
@@ -405,6 +408,7 @@ test("create css linear-gradient timing test - ease", () => {
                     "parsed": {
                         "funcType": "timing",
                         "name": "steps",
+                        "matchedString": "steps(3, start)",
                         "count": 3,
                         "direction": "start"
                     }
@@ -455,6 +459,7 @@ test("create css linear-gradient timing test - ease", () => {
                     "parsed": {
                         "funcType": "timing",
                         "name": "steps",
+                        "matchedString": "steps(10, start)",
                         "count": 10,
                         "direction": "start"
                     }
@@ -567,10 +572,11 @@ test("create css color parser", () => {
           "func": "color-name",
           "parsed": {
             "funcType": "color",
-            "matchedString": "white",
-            "startIndex": 8,
-            "endIndex": 13,
-            "func": "color-name"
+            "color": "white",
+            "r": 255,
+            "g": 255,
+            "b": 255,
+            "a": 1
           }
         },
         {
@@ -607,16 +613,11 @@ test("create css color parser", () => {
           ],
           "parsed": {
             "funcType": "color",
-            "matchedString": "hsl(360, 0.1, 0.1)",
-            "startIndex": 40,
-            "endIndex": 58,
-            "func": "hsl",
-            "args": "360, 0.1, 0.1",
-            "parameters": [
-              "360",
-              "0.1",
-              "0.1"
-            ]
+            "color": "hsl(360, 0.1, 0.1)",
+            "h": 360,
+            "s": 0.1,
+            "l": 0.1,
+            "a": 1
           }
         }
       ]);

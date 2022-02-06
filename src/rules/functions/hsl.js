@@ -5,9 +5,9 @@ export default function ({item}) {
     return {
         funcType: FuncType.COLOR,
         color: item.matchedString,
-        r: +item.parameters[0], 
-        g: +item.parameters[1], 
-        b: +item.parameters[2], 
+        h: +item.parameters[0], 
+        s: +item.parameters[1],         
+        l: +item.parameters[2], 
         a: 1, 
     }
 }

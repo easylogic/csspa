@@ -3,7 +3,7 @@ import { FuncType } from '../../types/model';
 import length from './length';
 
 test("parse length", () => {
-    expect(length({matchedString: "10%"})).toEqual({
+    expect(length({ item: {matchedString: "10%"}})).toEqual({
         funcType: FuncType.LENGTH,
         value: 10,
         unit: '%'

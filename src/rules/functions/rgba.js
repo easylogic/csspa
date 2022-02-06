@@ -1,6 +1,6 @@
 import { FuncType } from "../../types/model";
 
-export default function (item) {
+export default function ({item}) {
 
     return {
         funcType: FuncType.COLOR,

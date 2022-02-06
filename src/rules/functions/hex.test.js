@@ -4,7 +4,7 @@ import hex from './hex';
 
 
 test("parse hex color - 8digit", () => {
-    expect(hex({matchedString: "#ffffffff"})).toEqual({
+    expect(hex({item: {matchedString: "#ffffffff"}})).toEqual({
         funcType: FuncType.COLOR,
         color: "#ffffffff",
         r: 255,

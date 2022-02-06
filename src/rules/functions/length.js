@@ -1,6 +1,6 @@
 import { CSS_LENGTH_REGEXP, FuncType } from "../../types/model";
 
-export default function (item) {
+export default function ({item}) {
 
     var arr = item.matchedString.replace(CSS_LENGTH_REGEXP, "$1 $2").split(" ");
 

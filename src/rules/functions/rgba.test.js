@@ -5,7 +5,7 @@ import rgba from './rgba';
 
 
 test("parse rgba color", () => {
-    expect(rgba({matchedString: 'rgba(255, 255, 255, 1)', parameters: ['255', '255', '255', '0.5']})).toEqual({
+    expect(rgba({item: {matchedString: 'rgba(255, 255, 255, 1)', parameters: ['255', '255', '255', '0.5']}})).toEqual({
         funcType: FuncType.COLOR,
         color: "rgba(255, 255, 255, 1)",
         r: 255,
