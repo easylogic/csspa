@@ -1,6 +1,9 @@
 
+import functions from "./rules/functions";
 import ColorNames from "./types/ColorNames";
-import { CSS_KEYWORD_REGEXP, CSS_LENGTH_REGEXP, FuncType, GRADIENT_LIST, TIMIING_LIST } from "./types/model";
+import { CSS_FUNC_REGEXP, CSS_KEYWORD_REGEXP, CSS_LENGTH_REGEXP, FuncType, GRADIENT_LIST, TIMIING_LIST } from "./types/model";
+
+
 
 const CSS_FUNC_MATCHES = (str) => {
     if (str.indexOf('#') === 0) {
@@ -126,10 +129,6 @@ const makeGroupFunction = (type) => (item, allString, funcStartCharacter = '(', 
 }
 
 const CSS_FUNC_PARSER_MAP = {
-    "length": (item) => ({ funcType: FuncType.LENGTH, ...item}),
-    "hex": (item) => ({ funcType: FuncType.COLOR, ...item }),
-    "rgb": (item) => ({ funcType: FuncType.COLOR, ...item }),
-    "rgba": (item) => ({ funcType: FuncType.COLOR, ...item }),
     "hsl": (item) => ({ funcType: FuncType.COLOR, ...item }),
     "hsla": (item) => ({ funcType: FuncType.COLOR, ...item }),
     "color-name": (item) => ({ funcType: FuncType.COLOR, ...item }),
@@ -159,6 +158,8 @@ const CSS_FUNC_PARSER_MAP = {
     'ease-out': (item) => ({ funcType: FuncType.TIMING, name: 'ease-out', matchedString: item.matchedString, x1: 0, y1: 0, x2: 0.58, y2: 1 }),
     'ease-in-out': (item) => ({ funcType: FuncType.TIMING, name: 'ease-in-out', matchedString: item.matchedString, x1: 0.42, y1: 0, x2: 0.58, y2: 1 }),
     'linear': (item) => ({ funcType: FuncType.TIMING, name: 'linear', matchedString: item.matchedString, x1: 0, y1: 0, x2: 1, y2: 1 }),
+    ...functions
+    
 }
 
 export function makeIndexString(it, prefix = '@') {
