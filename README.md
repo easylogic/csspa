@@ -3,6 +3,40 @@
 ## what is
 simple css function parser like css value
 
+
+## How to install 
+
+```
+npm install @easylogic/csspa
+```
+
+## How to use 
+
+```js
+import { parseOneValue } from '@easylogic/csspa'
+
+const result = parseOneValue('red');
+
+```
+
+## How to test 
+
+```sh
+npm run test
+```
+
+## build 
+
+```sh
+npm run build
+```
+
+## How to run local dev server 
+
+```
+npm run dev
+```
+
 ## support function  
 
 * color 
@@ -280,13 +314,6 @@ const result = parseGroupValue('10px rgba(255, 255, 255, 0.1), 1px rgba(255, 255
 ]
 ```
 
-## local test 
-
-```
-npm run test
-```
-
-## 
 
 ## license
 MIT
