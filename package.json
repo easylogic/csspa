@@ -1,6 +1,6 @@
 {
   "name": "@easylogic/csspa",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "simple function parser like css string value",
   "type": "module",
   "main": "./src/index.js",
