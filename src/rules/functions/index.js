@@ -10,6 +10,7 @@ import hsla from "./hsla";
 import length from "./length";
 import linear from "./linear";
 import linearGradient from "./linear-gradient";
+import path from "./path";
 import radialGradient from "./radial-gradient";
 import repeatingConicGradient from "./repeating-conic-gradient";
 import repeatingLinearGradient from "./repeating-linear-gradient";
@@ -41,5 +42,6 @@ export default {
     'conic-gradient' : conicGradient,
     'repeating-linear-gradient' : repeatingLinearGradient,
     'repeating-radial-gradient' : repeatingRadialGradient,
-    'repeating-conic-gradient' : repeatingConicGradient
+    'repeating-conic-gradient' : repeatingConicGradient,
+    path,
 }

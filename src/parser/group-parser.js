@@ -6,5 +6,5 @@ export function parseGroupValue(str, customMapFuncName = 'temp') {
         customFuncMap: {
             [customMapFuncName]: makeGroupFunction(customMapFuncName)
         }
-    })[0]?.parsedParameters;
+    })[0]?.parameters;
 } 

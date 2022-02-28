@@ -18,6 +18,11 @@ const findFunctionEndIndex = (allString, startIndex, funcStartCharacter = '(', f
 
     }
 
+
+    if (result.length > 0) {
+        return -1;
+    }    
+
     return i + 1;
 }
 
@@ -33,6 +38,8 @@ const makeFuncType = (type) => {
         return FuncType.COLOR;
     } else if (type === 'length') {
         return FuncType.LENGTH;
+    } else if (type === 'comma') {
+        return FuncType.COMMA;
     }
 
     return type;
@@ -53,9 +60,23 @@ export const makeGroupFunction = (type) => {
 
     return ({ parseValue, item, allString, funcStartCharacter = '(', funcEndCharacter = ')', parameterSaparator = ',' }) => {
 
-        const matchedString = allString.substring(item.startIndex, findFunctionEndIndex(allString, item.endIndex, funcStartCharacter, funcEndCharacter))
+        const lastIndex = findFunctionEndIndex(allString, item.startIndex, funcStartCharacter, funcEndCharacter);
+
+        if (lastIndex === -1) {
+            return {
+                convert: true,
+                funcType: makeFuncType(type),
+                matchedString: allString,
+                type,
+                startIndex: item.startIndex,
+                endIndex: item.startIndex + allString.length,
+            };
+        }    
+
+
+        const matchedString = allString.substring(item.startIndex, lastIndex)
         const matchedStringIndex = matchedString.indexOf(funcStartCharacter) + funcStartCharacter.length;
-        const args = allString.substring(matchedStringIndex, matchedString.lastIndexOf(funcEndCharacter));
+        const args = allString.substring(item.startIndex + matchedStringIndex, item.startIndex + matchedString.lastIndexOf(funcEndCharacter));
 
         const startIndex = item.startIndex;
         const endIndex = item.startIndex + matchedString.length;
@@ -69,37 +90,20 @@ export const makeGroupFunction = (type) => {
             }
         })
 
-        // console.log(newParsed);
-
         let parameters = []
+        let commaIndex = 0;
 
-        // parameterSaparator 로 구분되어진, 특정 파라미터 구간을 얻기 위해서 
-        // 개별 item 의 startIndex 를 기준으로 문자열을 특정 키로 (@@startIndex:endIndex@@)  재조합 한다. 
-        let tempArgsStartIndex = 0;
-        let tempArgsResults = [];
         newParsed.forEach((it, index) => {
-            const startString = args.substring(tempArgsStartIndex, it.startIndex)
 
-            tempArgsResults.push(startString);
-            tempArgsResults.push(`@@${it.startIndex}:${it.endIndex}@@`);
-
-            tempArgsStartIndex = it.endIndex;
+            if (it.func === FuncType.COMMA) {
+                commaIndex++;
+            } else {
+                if (!parameters[commaIndex]) parameters[commaIndex] = [];
+                parameters[commaIndex].push(it);
+            }
+    
         })
-
-        tempArgsResults.push(args.substring(tempArgsStartIndex));
-
-        const tempArgs = tempArgsResults.join('');
-
-        parameters = tempArgs.split(parameterSaparator).map((it) => {
-            newParsed.forEach(item => {
-                it = it.replace(`@@${item.startIndex}:${item.endIndex}@@`, item.matchedString);
-            })
-
-            return it.trim();
-        });
-
-        console.log(parameters);
-
+    
         return {
             convert: true,
             funcType: makeFuncType(type),
@@ -109,10 +113,6 @@ export const makeGroupFunction = (type) => {
             matchedString,
             args,
             parameters,
-            parsed: newParsed,
-            parsedParameters: parameters.map(it => {
-                return parseValue(it);
-            })
         };
     }
 }

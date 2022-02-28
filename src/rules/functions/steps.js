@@ -1,4 +1,4 @@
-import { FuncType } from "../../types/model";
+import { FuncType, TimingFunction } from "../../types/model";
 
 export default function ({parseValue, item}) {
 
@@ -6,7 +6,7 @@ export default function ({parseValue, item}) {
 
     return {
         funcType: FuncType.TIMING,
-        name: 'steps',
+        name: TimingFunction.STEPS,
         matchedString: item.matchedString,
         count: value.parsed.value, 
         direction: item.parameters[1]

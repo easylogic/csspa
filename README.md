@@ -34,6 +34,7 @@ simple css function parser like css value
 * single function
   * cubic-bezier
   * steps
+  * path 
   * rgb
   * rgba
   * hsl
@@ -126,68 +127,10 @@ const result = parseOneValue('linear-gradient(rgba(255, 255, 255, 0.1), white 20
   "startIndex": 0,
   "endIndex": 52,
   "func": "linear-gradient",
-  "parsed": [
-    {
-      "matchedString": "rgba(255, 255, 255, 0.1)",
-      "startIndex": 0,
-      "endIndex": 24,
-      "func": "rgba",
-      "args": "255, 255, 255, 0.1",
-      "parameters": [
-        "255",
-        "255",
-        "255",
-        "0.1"
-      ],
-      "parsed": {
-        "funcType": "color",
-        "color": "rgba(255, 255, 255, 0.1)",
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 0.1
-      },
-      "fullTextStartIndex": 16,
-      "fullTextEndIndex": 40
-    },
-    {
-      "matchedString": "white",
-      "startIndex": 26,
-      "endIndex": 31,
-      "func": "color-name",
-      "parsed": {
-        "funcType": "color",
-        "color": "white",
-        "r": 255,
-        "g": 255,
-        "b": 255,
-        "a": 1
-      },
-      "fullTextStartIndex": 42,
-      "fullTextEndIndex": 47
-    },
-    {
-      "matchedString": "20%",
-      "startIndex": 32,
-      "endIndex": 35,
-      "func": "length",
-      "parsed": {
-        "funcType": "length",
-        "value": 20,
-        "unit": "%"
-      },
-      "fullTextStartIndex": 48,
-      "fullTextEndIndex": 51
-    }
-  ],
   "funcType": "gradient",
   "type": "linear-gradient",
   "args": "rgba(255, 255, 255, 0.1), white 20%",
   "parameters": [
-    "rgba(255, 255, 255, 0.1)",
-    "white 20%"
-  ],
-  "parsedParameters": [
     [
       {
         "matchedString": "rgba(255, 255, 255, 0.1)",
@@ -208,14 +151,16 @@ const result = parseOneValue('linear-gradient(rgba(255, 255, 255, 0.1), white 20
           "g": 255,
           "b": 255,
           "a": 0.1
-        }
+        },
+        "fullTextStartIndex": 16,
+        "fullTextEndIndex": 40
       }
     ],
     [
       {
         "matchedString": "white",
-        "startIndex": 0,
-        "endIndex": 5,
+        "startIndex": 26,
+        "endIndex": 31,
         "func": "color-name",
         "parsed": {
           "funcType": "color",
@@ -224,18 +169,22 @@ const result = parseOneValue('linear-gradient(rgba(255, 255, 255, 0.1), white 20
           "g": 255,
           "b": 255,
           "a": 1
-        }
+        },
+        "fullTextStartIndex": 42,
+        "fullTextEndIndex": 47
       },
       {
         "matchedString": "20%",
-        "startIndex": 6,
-        "endIndex": 9,
+        "startIndex": 32,
+        "endIndex": 35,
         "func": "length",
         "parsed": {
           "funcType": "length",
           "value": 20,
           "unit": "%"
-        }
+        },
+        "fullTextStartIndex": 48,
+        "fullTextEndIndex": 51
       }
     ]
   ]
@@ -262,7 +211,9 @@ const result = parseGroupValue('10px rgba(255, 255, 255, 0.1), 1px rgba(255, 255
         "funcType": "length",
         "value": 10,
         "unit": "px"
-      }
+      },
+      "fullTextStartIndex": 5,
+      "fullTextEndIndex": 9
     },
     {
       "matchedString": "rgba(255, 255, 255, 0.1)",
@@ -283,25 +234,29 @@ const result = parseGroupValue('10px rgba(255, 255, 255, 0.1), 1px rgba(255, 255
         "g": 255,
         "b": 255,
         "a": 0.1
-      }
+      },
+      "fullTextStartIndex": 10,
+      "fullTextEndIndex": 34
     }
   ],
   [
     {
       "matchedString": "1px",
-      "startIndex": 0,
-      "endIndex": 3,
+      "startIndex": 31,
+      "endIndex": 34,
       "func": "length",
       "parsed": {
         "funcType": "length",
         "value": 1,
         "unit": "px"
-      }
+      },
+      "fullTextStartIndex": 36,
+      "fullTextEndIndex": 39
     },
     {
       "matchedString": "rgba(255, 255, 255, 0.1)",
-      "startIndex": 4,
-      "endIndex": 28,
+      "startIndex": 35,
+      "endIndex": 59,
       "func": "rgba",
       "args": "255, 255, 255, 0.1",
       "parameters": [
@@ -317,7 +272,9 @@ const result = parseGroupValue('10px rgba(255, 255, 255, 0.1), 1px rgba(255, 255
         "g": 255,
         "b": 255,
         "a": 0.1
-      }
+      },
+      "fullTextStartIndex": 40,
+      "fullTextEndIndex": 64
     }
   ]
 ]

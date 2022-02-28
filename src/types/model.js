@@ -7,9 +7,12 @@ export const TimingFunction = {
     EASE_IN_OUT: "ease-in-out",
     STEPS: "steps",
     CUBIC_BEZIER: "cubic-bezier",
+    PATH: "path"
+
 }
 
 export const FuncType = {
+    COMMA: 'comma',    
     COLOR: 'color',
     LENGTH: 'length',
     GRADIENT: 'gradient',
@@ -36,7 +39,7 @@ export const GradientType = {
 
 
 // order is very important (number, length, 8 digit color, 6 digit color, 3 digit color, keyword, color name)
-export const CSS_FUNC_REGEXP = /(([\-]?[\d.]+)(px|pt|fr|r?em|deg|vh|vw|m?s|%|g?rad|turn)?)|#(?:[\da-f]{8})|(#(?:[\da-f]{3}){1,2}|([a-z_\-]+)\([^\(\)]+\)|([a-z_\-]+))/gi;
+export const CSS_FUNC_REGEXP = /(([\-]?[\d.]+)(px|pt|fr|r?em|deg|vh|vw|m?s|%|g?rad|turn)?)|#(?:[\da-f]{8})|(#(?:[\da-f]{3}){1,2}|([a-z_\-]+)\([^\(\)]+\)|([a-z_\-]+))|(\,)/gi;
 export const CSS_LENGTH_REGEXP = /^[\-]?([\d.]+)(px|pt|fr|r?em|deg|vh|vw|m?s|%|g?rad|turn)?$/gi;
 export const CSS_KEYWORD_REGEXP = /^[a-z_\-]+$/gi;
 
